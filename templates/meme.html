@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            background-image: url('/static/doge.jpg');
+        }
+        .container {
+            max-width: 55%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .meme-container {
+            text-align: center;
+            margin-bottom: 20px;
+            border: 2px solid #ccc; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            background-color: black;
+        }
+        .meme-container img {
+            width: 50%; 
+            height: 50%; 
+        }
+        .timer {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;color:rgb(7, 7, 6);background-color: rgba(233, 131, 14, 0.863);">Random Memes Every 15s</h1>
+        <div id="meme-container" class="meme-container">
+            <img id="meme-img" src="{{ memes[0] }}" alt="Meme">
+        </div>
+        <div id="timer" class="timer" style="color: rgb(8, 1, 1) ;background-color: rgb(8, 1, 1,0.1);"></div>
+    </div>
+
+    <script>
+        var memes = {{ memes | tojson | safe }};
+        var index = 0;
+        var memeImg = document.getElementById("meme-img");
+        var timerDiv = document.getElementById("timer");
+        var countdown = 15;
+
+       
+        setInterval(function() {
+            countdown--;
+            if (countdown < 0) {
+                index = (index + 1) % memes.length;
+                memeImg.src = memes[index];
+                countdown = 15; // Reset countdown
+            }
+            timerDiv.textContent = "Next meme in " + countdown + "s";
+        }, 1000); 
+    </script>
+</body>
+</html>
