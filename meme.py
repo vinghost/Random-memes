@@ -21,5 +21,5 @@ def index():
     memes = get_memes()
     return render_template('meme.html', memes=memes)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
