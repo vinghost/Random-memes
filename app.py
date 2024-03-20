@@ -8,12 +8,11 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Function to fetch memes using the requests library
+# Function to fetch memes from GitHub-hosted JSON file
 def get_memes():
-    url = "https://www.reddit.com/r/memes.json"
-    headers = {'User-Agent': 'Random_memes15s_stundent_project'}
+    url = "https://raw.githubusercontent.com/vinghost/Random-memes/master/memes.json"
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url)
         response.raise_for_status()  # Raise exception for bad status codes
         data = response.json()
         memes = []
