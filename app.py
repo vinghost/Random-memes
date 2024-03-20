@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # Function to fetch memes using the requests library
 def get_memes():
     url = "https://www.reddit.com/r/memes.json"
-    headers = {'User-Agent': 'Mozilla/5.0'}
+    headers = {'User-Agent': 'Random_memes15s_stundent_project'}
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # Raise exception for bad status codes
